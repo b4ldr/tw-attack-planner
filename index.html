@@ -1,0 +1,54 @@
+<html> 
+	<head> 
+		<title>may the cheese be with you</title> 
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="plan.js"></script>
+		
+	</head> 
+	<body>     
+		<div id="plan_div">
+			<form name="plan"  > 
+				<label for="world_speed">World Speed</label>
+				<input id="world_speed" name="world_speed" type="text" value="1"></input><br/> 
+				<label for="unit_speed">Unit Speed</label>
+				<input id="unit_speed" name="unit_speed" type="text" value="1"></input><br/> 
+				<label for="arrival_time">Arrival Time</label>
+				<input id="arrival_time" name="arrival_time" type="text" value="" size="25"></input><br/> 
+				<label for="clearing_unit">Slowest Clearing unit</label>
+				<select id="clearing_unit" name="clearing_unit" id="clearing_unit"> 
+					<option value=18 >axe</option> 
+					<option value=9 >spy</option> 
+					<option value=10 >lcav/acav/pally</option> 
+					<option value=11 >hcav</option> 
+					<option value=30 >ram/cat</option> 
+				</select><br/> 
+				<label for="support_unit">Slowest Support unit</label>
+				<select id="support_unit" name="support_unit" id="support_unit"> 
+					<option value=18 >spear/archer</option> 
+					<option value=22 >sword</option> 
+					<option value=9 >spy</option> 
+					<option value=10 >lcav/acav/pally</option> 
+					<option value=11 >hcav</option> 
+					<option value=30 >cat</option> 
+				</select><br/> 
+				<table> 
+					<thead> 
+						<th>Nobleing Villages</th> 
+						<th>Clearing Villages</th> 
+						<th>Supporting Villages</th> 
+						<th>targets</th> 
+					</thead> 
+					<tbody> 
+						<tr>
+							<td><textArea id="noble_coords" name="noble_coords" rows=10></textArea></td> 
+							<td><textArea id="clearing_coords" name="clearing_coords" rows=10></textArea></td> 
+							<td><textArea id="support_coords" name="support_coords" rows=10></textArea></td>
+							<td><textArea id="target_coords" name="target_coords" rows=10></textArea></td>
+						</tr>             
+					</tbody> 
+				</table> 
+				<input type="button" name="submit" id="submit_btn" class="button" value="Get plan!"></input> 
+			</form>     
+		</div>
+	</body> 
+</html>
