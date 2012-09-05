@@ -45,10 +45,34 @@
 							<td><textArea id="support_coords" name="support_coords" rows=10></textArea></td>
 							<td><textArea id="target_coords" name="target_coords" rows=10></textArea></td>
 						</tr>             
+						<tr>
+							<td>
+								<label for="noble_count">#Nobles/target</label>
+								<input id="noble_count" name="noble_count" type="text" value="1" size="2"></input><br/> 
+							</td>
+							<td>
+								<label for="clearing_count">#Clearing/target</label>
+								<input id="clearing_count" name="clearing_count" type="text" value="1" size="2"></input><br/> 
+							</td>
+							<td>
+								<label for="support_count">#Support/target</label>
+								<input id="support_count" name="support_count" type="text" value="1" size="2"></input><br/> 
+							</td>
+							<td></td>
+						</tr>
 					</tbody> 
 				</table> 
 				<input type="button" name="submit" id="submit_btn" class="button" value="Get plan!"></input> 
 			</form>     
 		</div>
+                <div id="noble_results" name="noble_results" style="color:green;">
+                        some nobel 
+                </div>
+                <div id="clearing_results" name="clearing_results" style="color:red;">
+                        some clearing
+                </div>
+                <div id="support_results" name="support_results" style="color:cyan;">
+                        some support
+                </div>
 	</body> 
 </html>
