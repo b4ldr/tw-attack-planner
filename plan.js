@@ -64,6 +64,18 @@ function get_results(plan, land_time) {
 	return result;
 }
 	
+function get_twcode(plan, land_time, colour) {
+	var twcode = "";
+	for (attack in plan) {
+		console.log(plan[attack]['target'] );
+		if (plan[attack]['target'] != undefined || plan[attack]['travel_time'] != undefined) {
+			var launch_time = new Date(Math.floor(Date.parse(land_time) - (plan[attack]['travel_time']*1000)));
+			twcode += "[color=" + colour + "][coord]" + attack + "[/coord]"  + " -> " +  "[color=" + colour + "][coord]" + plan[attack]['target'] + "[/coord]"  +" @ " + launch_time.toString('dd/mm/yyyy HH:mm:ss') + "[/color]<br />";
+		}
+	}
+	return twcode;
+}
+	
 $(function() {  
   	$(".button").click(function() {  
 		var coord_regex = /[0-9]{1,3}\|[0-9]{1,3}/g;
@@ -89,6 +101,7 @@ $(function() {
 			var clearing_plan = get_plan( clearing_travel_times,clearing_count);
 			//console.log(clearing_plan);
 			$("div#clearing_results").html(get_results(clearing_plan,arrival_time));
+			$("div#clearing_twcode").html(get_twcode(clearing_plan,arrival_time,"#ff0e0e"));
 			
 		}
 		if ( noble_coords ) { 
@@ -97,11 +110,13 @@ $(function() {
 			var noble_plan = get_plan( noble_travel_times,noble_count);
 			//console.log(noble_plan);
 			$("div#noble_results").html(get_results(noble_plan,arrival_time));
+			$("div#noble_twcode").html(get_twcode(clearing_plan,arrival_time,"#2eb92e"));
 		}
 		if ( support_coords ) { 
 			var support_travel_times = get_travel_times(support_coords,targets_coords,support_speed);
 			var support_plan = get_plan( support_travel_times,support_count);
 			$("div#support_results").html(get_results(support_plan,arrival_time));
+			$("div#support_twcode").html(get_twcode(clearing_plan,arrival_time,"#0eaeae"));
 		}
 	});  
 });  
