@@ -172,8 +172,23 @@ $(function() {
 		var support_speed = $("select#support_unit").val()/world_speed/unit_speed;
 		var noble_speed = 35/world_speed/unit_speed;
 		var noble_coords = $("textarea#noble_coords").val().match(coord_regex);
-		var nuke_coords = clean($("textarea#nuke_coords").val().match(coord_regex),noble_coords);
-		var support_coords = clean(clean($("textarea#support_coords").val().match(coord_regex),noble_coords),nuke_coords);
+		console.log(noble_coords);
+		if ( noble_coords == null) {
+			var nuke_coords = $("textarea#nuke_coords").val().match(coord_regex);
+			if ( nuke_coords == null) {
+				var support_coords = $("textarea#support_coords").val().match(coord_regex);
+			} else {
+				var support_coords = clean($("textarea#support_coords").val().match(coord_regex),nuke_coords);
+			}
+		} else {
+			var nuke_coords = clean($("textarea#nuke_coords").val().match(coord_regex),noble_coords);
+			if ( nuke_coords == null) {
+				var support_coords = clean($("textarea#support_coords").val().match(coord_regex),noble_coords);
+			} else {
+				var support_coords = clean(clean($("textarea#support_coords").val().match(coord_regex),noble_coords),nuke_coords);
+			}
+		}
+		
 		var targets_coords = $("textarea#target_coords").val().match(coord_regex);
 		var nuke_count = $("input#nuke_count").val()
 		var support_count = $("input#support_count").val()
