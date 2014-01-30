@@ -175,10 +175,10 @@ $(function() {
 		var arrival_time = $("input#arrival_time").val();
 		var nuke_speed = $("select#nuke_unit").val()/world_speed/unit_speed;
 		var support_speed = $("select#support_unit").val()/world_speed/unit_speed;
-		var noble_speed = 35/world_speed/unit_speed;
-		var noble_coords = $("textarea#noble_coords").val().match(coord_regex);
-		console.log(noble_coords);
-		if ( noble_coords == null) {
+		var nobel_speed = 35/world_speed/unit_speed;
+		var nobel_coords = $("textarea#nobel_coords").val().match(coord_regex);
+		console.log(nobel_coords);
+		if ( nobel_coords == null) {
 			var nuke_coords = $("textarea#nuke_coords").val().match(coord_regex);
 			if ( nuke_coords == null) {
 				var support_coords = $("textarea#support_coords").val().match(coord_regex);
@@ -186,24 +186,24 @@ $(function() {
 				var support_coords = clean($("textarea#support_coords").val().match(coord_regex),nuke_coords);
 			}
 		} else {
-			var nuke_coords = clean($("textarea#nuke_coords").val().match(coord_regex),noble_coords);
+			var nuke_coords = clean($("textarea#nuke_coords").val().match(coord_regex),nobel_coords);
 			if ( nuke_coords == null) {
-				var support_coords = clean($("textarea#support_coords").val().match(coord_regex),noble_coords);
+				var support_coords = clean($("textarea#support_coords").val().match(coord_regex),nobel_coords);
 			} else {
-				var support_coords = clean(clean($("textarea#support_coords").val().match(coord_regex),noble_coords),nuke_coords);
+				var support_coords = clean(clean($("textarea#support_coords").val().match(coord_regex),nobel_coords),nuke_coords);
 			}
 		}
 		
 		var targets_coords = $("textarea#target_coords").val().match(coord_regex);
 		var nuke_count = $("input#nuke_count").val()
 		var support_count = $("input#support_count").val()
-		var noble_count = $("input#noble_count").val()
+		var nobel_count = $("input#nobel_count").val()
 		var all_plans = new Array();
 		$("textarea#target_coords").val(targets_coords.join("\n"));
-		if ( noble_coords ) { 
-			var noble_travel_times = get_travel_times(noble_coords,targets_coords,noble_speed);
-			$("textarea#noble_coords").val(noble_coords.join("\n"));
-			all_plans = merge(all_plans, get_plan( noble_travel_times,noble_count,"nobel"));
+		if ( nobel_coords ) { 
+			var nobel_travel_times = get_travel_times(nobel_coords,targets_coords,nobel_speed);
+			$("textarea#nobel_coords").val(nobel_coords.join("\n"));
+			all_plans = merge(all_plans, get_plan( nobel_travel_times,nobel_count,"nobel"));
 		}
 		if ( nuke_coords ) { 
 			var nuke_travel_times = get_travel_times(nuke_coords,targets_coords,nuke_speed);
