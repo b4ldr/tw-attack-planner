@@ -96,7 +96,7 @@ function get_troop ( type ) {
 	
 }	
 function get_twcode(plan, land_time) {
-	var twcode = "[table] [**]Troop[||]From[||]To[||]Launch At[/**] ";
+	var twcode = "[table] [**]Troop[||]From[||]To[||]Launch At[/**]\n";
 	var colour = "";
 	for (attack in plan) {
 		if (plan[attack]['target'] != undefined || plan[attack]['travel_time'] != undefined ||  plan[attack]['type'] != undefined) {
@@ -104,7 +104,7 @@ function get_twcode(plan, land_time) {
 			else if ( plan[attack]['type'] == "nuke" ) { colour = "#ff0e0e"; } 
 			else if ( plan[attack]['type'] == "support" ) { colour = "#0eaeae"; } 
 			var launch_time = new Date(Math.floor(Date.parse(land_time) - (plan[attack]['travel_time']*1000)));
-			twcode += "[*]" + get_troop(plan[attack]['type']) + "[|][coord]" + plan[attack]['attacker'] + "[/coord][|][coord]" + plan[attack]['target'] + "[/coord][|][b][color=" + colour + "]" + launch_time.toString('dd/mm/yyyy HH:mm:ss') + "[/color][/b][/*]";
+			twcode += "[*]" + get_troop(plan[attack]['type']) + "[|][coord]" + plan[attack]['attacker'] + "[/coord][|][coord]" + plan[attack]['target'] + "[/coord][|][b][color=" + colour + "]" + launch_time.toString('dd/mm/yyyy HH:mm:ss') + "[/color][/b][/*]\n";
 		}
 	}
 	twcode += "[/table]";
