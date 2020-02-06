@@ -1,0 +1,13 @@
+https://tw.tomwright.me/beep-timer
+
+Basic Tagger
+javascript:$.getScript('https://media.innogamescdn.com/com_DS_UK/Scripts/labelAttacks.js');void 0;
+
+
+Mass Tagger (unfortunately this tagger doesn't seem to record the ms values for return time. if you need to back time make sure you update any attacks with the tagger above)
+javascript:$.getScript('https://media.innogamescdn.com/com_DS_UK/Scripts/mass_tag_launch.js');void 0;
+
+
+Time Tagger
+javascript:$.getScript('https://media.innogamescdn.com/com_DS_UK/Scripts/tagToUnknown.js');void 0;
+Edited by b@ldr on 30.08. at 17:00

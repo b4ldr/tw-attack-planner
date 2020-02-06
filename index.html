@@ -1,10 +1,11 @@
 <html> 
 	<head> 
 		<title>Attack planner</title> 
-		<link rel="stylesheet" type="text/css" href="http://en63.tribalwars.net/css//game/oldstyle.css?1345023673" />
+		<link rel="stylesheet" type="text/css" href="https://dsen.innogamescdn.com//merged/start.css" />
 		<link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.8.23/themes/smoothness/jquery-ui.css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
 		<script type="text/javascript" src="jquery-ui-timepicker-addon.js"></script>
 		<script type="text/javascript" src="plan.js"></script>
 		<style>
@@ -33,16 +34,21 @@
 		
 	</head> 
 	<body>     
-		<h1>B@ldr's TW Attack Planner</h1>
-                <div id="plan_div" class="center">
-                <a href='http://forum.attackplanner.com/'>forum</a> | <a href='/farmspace-calculator.html'>Farm Space Calculator</a>
-            </div>
-		<hr />
+		<div id='title'>
+			<br />
+			<h1>B@ldr's TW Attack Planner</h1>
+			<hr />
+		</div>
 
 		<div id="plan_div" class="center">
-                    <div style="color: SaddleBrown;" class="center">
-                    Well enough people responded that i will extend the domain.  i also thougt i would add a forum so feel free to spam away
-		</div>
+			<div id='bitcoin'>
+				<br />
+				My bitcoin address if you are feeling super generous: <a href='bitcoin:16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP'>16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP</a>
+			</div>
+			<div>
+				everyone should also check out the amazing scripts at <a href="https://tomwright.github.io/TribalWarsScripts/">https://tomwright.github.io/TribalWarsScripts/</a> UPDATED!
+			</div>
+				<br />
 			<form name="plan" > 
 				<table>
 					<tr>
@@ -66,7 +72,7 @@
 						<td>
 							<select id="support_unit" name="support_unit" id="support_unit"> 
 								<option value=18 >Spear/Archer</option> 
-								<option value=22 >Sword</option> 
+								<option value=22 selected="selected">Sword</option> 
 								<option value=9 >Spy</option> 
 								<option value=10 >LC/MA/Pally</option> 
 								<option value=11 >HC</option> 
@@ -76,11 +82,11 @@
 					</tr>
 					<tr>
 						<td><label for="world_speed">World Speed</label></td>
-						<td><input id="world_speed" name="world_speed" type="text" value="1" size="2"></input></td>
+						<td><input id="world_speed" name="world_speed" type="text" value="1.8" size="2"></input></td>
 					</tr>
 					<tr>
 						<td><label for="unit_speed">Unit Speed</label></td>
-						<td><input id="unit_speed" name="unit_speed" type="text" value="1" size="2"></input></td>
+						<td><input id="unit_speed" name="unit_speed" type="text" value="0.6" size="2"></input></td>
 					</tr>
 				</table>
 				<table> 
