@@ -1,0 +1,687 @@
+<html>
+
+<head>
+<title>fluffy88.com - Farmspace Calculator</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://assets.twstats.com/dsgraphic/5.3/rechts.png" />
+
+<script>
+	function getInput(input) {
+		a=document.getElementById(input).value;
+		return a;
+		}
+	function OD() {
+		document.getElementById("ODA").value=(getInput('spear')*4+getInput('sword')*5+getInput('axe')*1+getInput('archer')*5+getInput('spy')*1+getInput('light')*5+getInput('marcher')*6+getInput('heavy')*23+getInput('ram')*4+getInput('catapult')*12+getInput('knight')*40+(getInput('snob')*200));
+		document.getElementById("ODD").value=(getInput('spear')*1+getInput('sword')*2+getInput('axe')*4+getInput('archer')*2+getInput('spy')*2+getInput('light')*13+getInput('marcher')*12+getInput('heavy')*15+getInput('ram')*8+getInput('catapult')*10+getInput('knight')*20+getInput('snob')*200);
+		}	
+	function Calculate() {
+		OD();
+		farmspace();
+		troops();
+		}
+	function troops() {
+		document.getElementById("farmspace").value=intFarmSpace-(getInput('spear')*1+getInput('sword')*1+getInput('axe')*1+getInput('archer')*1+getInput('spy')*2+getInput('light')*4+getInput('marcher')*5+getInput('heavy')*6+getInput('ram')*5+getInput('catapult')*8+getInput('knight')*10+(getInput('snob')*100));
+		}
+	function farmspace() {	
+	var arrBs=[];
+	arrBs.push(["main",10,[1.17,5]]);
+	arrBs.push(["f_church",10,[1,5]]);
+	arrBs.push(["church",10,[1.55,5000]]);
+	arrBs.push(["barracks",16,[1.17,7]]);
+	arrBs.push(["stable",20,[1.17,8]]);
+	arrBs.push(["garage",24,[1.17,8]]);
+	arrBs.push(["academy",512,[1.17,80]]);
+	arrBs.push(["smith",19,[1.17,20]]);
+	arrBs.push(["place",0,[1,0]]);
+	arrBs.push(["statue",24,[1,10]]);
+	arrBs.push(["market",10,[1.17,20]]);
+	arrBs.push(["wood",6,[1.155,5]]);
+	arrBs.push(["stone",6,[1.14,10]]);
+	arrBs.push(["iron",6,[1.17,10]]);
+	var idxFarm=arrBs.length;
+	arrBs.push(["farm",5,[1.172102,-240]]);
+	arrBs.push(["storage",6,[1,0]]);
+	arrBs.push(["hide",5,[1.17,2]]);
+	arrBs.push(["wall",8,[1.17,5]]);
+
+	function fnLevel(arrB) {
+		return getInput(arrB[0]);
+		}
+	function fnPoints(arrB,idx) {
+		if(arrLevels[idx]==0)return 0;
+		return Math.round(arrB[1]*Math.pow(1.2,arrLevels[idx]-1));
+		}
+	function fnFarmSpace(arrB,idx) {
+		if(arrLevels[idx]==0)return 0;
+		return Math.round(arrB[2][1]*Math.pow(arrB[2][0],arrLevels[idx]-1));
+		}
+	function fnSum(arr) {
+		var intSum=0;
+		arr.forEach(function(intValue){intSum+=intValue;});
+		return intSum;
+		}
+	var arrLevels=arrBs.map(fnLevel);
+	var arrPoints=arrBs.map(fnPoints);
+	var arrFarmSpace=arrBs.map(fnFarmSpace);
+	intPoints=fnSum(arrPoints);
+	intFarmSpace=-1*fnSum(arrFarmSpace);
+	intFarm=-1*fnFarmSpace(arrBs[idxFarm],idxFarm);
+	strReport="Points : "+(intPoints)+"\nFarmSpace : (Buildings+Troops=Total) :"+(intFarm-intFarmSpace)+"+"+intFarmSpace+"="+intFarm;
+	document.getElementById("farmspace").value=intFarmSpace;
+	document.getElementById("farmspaceLeft").value=intFarmSpace;
+	document.getElementById("points").value=intPoints;
+	}
+</script>
+</head>
+
+<body>
+<form name="units">
+
+	<table border="0" align="center" style="background-color:#F7EED3;">
+	<thead>
+		<tr>
+            <th>Building</th>
+
+            <th>Level</th>
+
+            <th>Troops</th>
+        </tr>
+    </thead>
+	<tbody>
+	
+	<!-- Village Headquarters -->
+	<tr>
+		<td>
+			<img src="graphic/main.png" title="Village Headquarters" alt="" />Village Headquarters:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="main" id="main">
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+		<td align="center"><img src="graphic/unit_spear.png" title="Spear fighter" alt="" /> 		<input id="spear" type="text" value="" size="5" />
+		</td>
+	</tr>
+	
+	<!-- Barracks -->
+	<tr>
+		<td>
+			<img src="graphic/barracks.png" title="Barracks" alt="" />Barracks:
+		</td>
+		<td align="center"> 
+			<select style="width: 70px;" name="barracks" id="barracks">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_sword.png" title="Swordsman" alt="" />
+			<input id="sword" type="text" value="" size="5" />
+		</td>
+	</tr>
+	
+	<!-- Stable -->
+	<tr>
+		<td>
+			<img src="graphic/stable.png" title="Stable" alt="" />Stable:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="stable" id="stable">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_axe.png" title="Axeman" alt="" />
+			<input id="axe" type="text" value="" size="5" />
+		</td>
+	</tr>
+	
+	<!-- Workshop -->
+	<tr>
+		<td>
+			<img src="graphic/garage.png" title="Workshop" alt="" />Workshop:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="garage" id="garage">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_archer.png" title="Archer" alt="" />
+			<input id="archer" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Church -->
+	<tr>
+		<td>
+		<img src="graphic/church.png" title="Church" alt="" />Church:
+	</td>
+	<td align="center">
+			<select style="width: 70px;" name="church" id="church">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_spy.png" title="Scout" alt="" />
+			<input id="spy" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- First Church -->
+	<tr>
+		<td>
+			<img src="graphic/church.png" title="First Church" alt="" />First Church:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="f_church" id="f_church">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_light.png" title="Light cavalry" alt="" />
+			<input id="light" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Academy -->
+	<tr>
+		<td>
+			<img src="graphic/snob.png" title="Academy" alt="" />Academy:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="academy" id="academy">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+				<option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_marcher.png" title="Mounted archer" alt="" />
+			<input id="marcher" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Smithy -->
+	<tr>
+		<td>
+			<img src="graphic/smith.png" title="Smithy" alt="" />Smithy:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="smith" id="smith">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_heavy.png" title="Heavy cavalry" alt="" />
+			<input id="heavy" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Rally Point -->
+	<tr>
+		<td>
+			<img src="graphic/place.png" title="Rally point" alt="" />Rally Point:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="place" id="place">
+                <option value="1" selected="selected">1</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_ram.png" title="Ram" alt="" />
+			<input id="ram" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Statue -->
+	<tr>
+		<td>
+			<img src="graphic/statue.png" title="Statue" alt="" />Statue:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="statue" id="statue">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_catapult.png" title="Catapult" alt="" />
+			<input id="catapult" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Market -->
+	<tr>
+		<td>
+			<img src="graphic/market.png" title="Market" alt="" />Market:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="market" id="market">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_knight.png" title="Paladin" alt="" />
+			<input id="knight" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Timber Camp -->
+	<tr>
+		<td>
+			<img src="graphic/wood.png" title="Timber camp" alt="" />Timber Camp:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="wood" id="wood">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+		<td align="center">
+			<img src="graphic/unit_snob.png" title="Nobleman" alt="" />
+			<input id="snob" type="text" value="" size="5" />
+		</td>
+	</tr>
+	<!-- Clay Pit -->
+	<tr>
+		<td>
+			<img src="graphic/stone.png" title="Clay pit" alt="" />Clay Pit:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="stone" id="stone">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+	</tr>
+	<!-- Iron Mine -->
+	<tr>
+		<td>
+			<img src="graphic/iron.png" title="Iron Mine" alt="" />Iron Mine:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="iron" id="iron">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+	</tr>
+	<!-- Farm -->
+	<tr>
+		<td>
+			<img src="graphic/farm.png" title="Farm" alt="" />Farm:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="farm" id="farm">
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+	</tr>
+	<!-- Warehouse -->
+	<tr>
+		<td>
+			<img src="graphic/storage.png" title="Warehouse" alt="" />Warehouse:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="storage" id="storage">
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+				<option value="30">30</option>
+            </select>
+		</td>
+	</tr>
+	<!-- Hiding Place -->
+	<tr>
+		<td>
+			<img src="graphic/hide.png" title="Hiding place" alt="" />Hiding Place:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="hide" id="hide">
+                <option value="0">0</option>
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+		</td>
+	</tr>
+	<!-- Wall -->
+	<tr>
+		<td>
+			<img src="graphic/wall.png" title="Wall" alt="" />Wall:
+		</td>
+		<td align="center">
+			<select style="width: 70px;" name="wall" id="wall">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </select>
+		</td>
+	</tr>
+	
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>ODA:
+				<input type="text" size="10" id="ODA" disabled />
+			<td>Points:
+				<input type="text" size="10" id="points" disabled />
+			</td>
+			<td align="Right">Farmspace - Buildings only:
+				<input type="text" size="10" id="farmspaceLeft" disabled />
+			</td>
+		</tr>
+		<tr>
+			<td>ODD:
+				<input type="text" size="10" id="ODD" disabled />
+			</td>
+			<td align="center">
+				<input tabindex="1" type="button" value="Calculate !" onClick="Calculate()" />
+			</td>
+			<td align="Right"> - Minus Troops:
+				<input type="text" size="10" id="farmspace" disabled />
+			</td>
+		</tr>
+	</tfoot>
+	</table>
+</form>
+</body>
+
+</html>

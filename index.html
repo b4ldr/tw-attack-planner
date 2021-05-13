@@ -31,20 +31,19 @@
 				width: 250px;
 			}
 		</style>
-		
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+       <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
 	</head> 
-	<body>     
+	<body>
 		<div id='title'>
 			<br />
 			<h1>B@ldr's TW Attack Planner</h1>
+			<h2>back on attackplanner.com</h2>
 			<hr />
 		</div>
 
 		<div id="plan_div" class="center">
-			<div id='bitcoin'>
-				<br />
-				My bitcoin address if you are feeling super generous: <a href='bitcoin:16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP'>16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP</a>
-			</div>
+
 			<div>
 				everyone should also check out the amazing scripts at <a href="https://tomwright.github.io/TribalWarsScripts/">https://tomwright.github.io/TribalWarsScripts/</a> UPDATED!
 			</div>
@@ -134,5 +133,25 @@
 				
 			</form>     
 		</div>
-	</body> 
+				<div id='bitcoin'>
+              <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
+     data-address="1JQaM6JBQRSwFyUmo4MDPuzndYzegxbuUN"
+     data-shared="false">
+    <div class="blockchain stage-begin">
+        <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
+    </div>
+    <div class="blockchain stage-loading" style="text-align:center">
+        <img src="https://blockchain.info/Resources/loading-large.gif"/>
+    </div>
+    <div class="blockchain stage-ready">
+         <p align="center">Please Donate To Bitcoin Address: <b>16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP</b></p>
+         <p align="center" class="qr-code"></p>
+    </div>
+    <div class="blockchain stage-paid">
+         Donation of <b>0.01 BTC</b> Received. Thank You.
+    </div>
+    <div class="blockchain stage-error">
+        <font color="red">[[error]]</font>
+    </div>
+</div></body> 
 </html>
