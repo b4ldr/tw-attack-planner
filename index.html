@@ -1,157 +1,178 @@
-<html> 
-	<head> 
-		<title>Attack planner</title> 
-		<link rel="stylesheet" type="text/css" href="https://dsen.innogamescdn.com//merged/start.css" />
-		<link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.8.23/themes/smoothness/jquery-ui.css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
-		<script type="text/javascript" src="jquery-ui-timepicker-addon.js"></script>
-		<script type="text/javascript" src="plan.js"></script>
-		<style>
-			.center {
-				margin:auto;
-				width:50%;
-			}
-			h3 { text-align: center; }
-			h1, h2 { 
-				text-align: center; 
-				color: SaddleBrown;
-			}
-			.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-			.ui-timepicker-div dl { text-align: left; }
-			.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
-			.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
-			.ui-timepicker-div td { font-size: 90%; }
-			.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
-			#ad {
-				position:absolute;
-				left: 20px;
-				top: 50px;
-				width: 250px;
-			}
-		</style>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-       <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
-	</head> 
-	<body>
-		<div id='title'>
-			<br />
-			<h1>B@ldr's TW Attack Planner</h1>
-			<h2>back on attackplanner.com</h2>
-			<hr />
-		</div>
+<!DOCTYPE html>
+<html lang="en">
 
-		<div id="plan_div" class="center">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Attack Planner</title>
 
-			<div>
-				everyone should also check out the amazing scripts at <a href="https://tomwright.github.io/TribalWarsScripts/">https://tomwright.github.io/TribalWarsScripts/</a> UPDATED!
-			</div>
-				<br />
-			<form name="plan" > 
-				<table>
+	<link rel="stylesheet" type="text/css" href="https://dsen.innogamescdn.com//merged/start.css" />
+	<!-- Modern jQuery and Plugins -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.21/jquery.datetimepicker.min.css">
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script>
+	<script src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
+	<script src="plan.js"></script>
+
+	<style>
+		.center {
+			margin: auto;
+			width: 50%;
+		}
+
+		h1,
+		h2,
+		h3 {
+			text-align: center;
+		}
+
+		h1,
+		h2 {
+			color: SaddleBrown;
+		}
+
+		.ui-timepicker-div .ui-widget-header {
+			margin-bottom: 8px;
+		}
+
+		.ui-timepicker-div dl {
+			text-align: left;
+		}
+
+		.ui-timepicker-div dl dt {
+			height: 25px;
+			margin-bottom: -25px;
+		}
+
+		.ui-timepicker-div dl dd {
+			margin: 0 10px 10px 65px;
+		}
+
+		.ui-timepicker-div td {
+			font-size: 90%;
+		}
+
+		.ui-tpicker-grid-label {
+			background: none;
+			border: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		#ad {
+			position: absolute;
+			left: 20px;
+			top: 50px;
+			width: 250px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="title">
+		<br />
+		<h1>B@ldr's TW Attack Planner</h1>
+		<h2>back on attackplanner.com</h2>
+		<hr />
+	</div>
+
+	<div id="plan_div" class="center">
+
+		<form name="plan">
+			<table>
+				<tr>
+					<td><label for="arrival_time">Arrival Time</label></td>
+					<td><input id="arrival_time" name="arrival_time" type="text" size="35"></td>
+				</tr>
+				<tr>
+					<td><label for="nuke_unit">Slowest Nuke Unit</label></td>
+					<td>
+						<select id="nuke_unit" name="nuke_unit">
+							<option value="18">Axe</option>
+							<option value="9">Spy</option>
+							<option value="10">LC/MA/Pally</option>
+							<option value="11">HC</option>
+							<option value="30" selected>Ram/Cat</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="support_unit">Slowest Support Unit</label></td>
+					<td>
+						<select id="support_unit" name="support_unit">
+							<option value="18">Spear/Archer</option>
+							<option value="22" selected>Sword</option>
+							<option value="9">Spy</option>
+							<option value="10">LC/MA/Pally</option>
+							<option value="11">HC</option>
+							<option value="30">Cat</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="world_speed">World Speed</label></td>
+					<td><input id="world_speed" name="world_speed" type="text" value="1.25" size="2"></td>
+				</tr>
+				<tr>
+					<td><label for="unit_speed">Unit Speed</label></td>
+					<td><input id="unit_speed" name="unit_speed" type="text" value="0.8" size="2"></td>
+				</tr>
+			</table>
+
+			<table>
+				<thead>
 					<tr>
-						<td><label for="arrival_time">Arrival Time</label></td>
-						<td><input id="arrival_time" name="arrival_time" type="text" value="" size="35"></input></td>
+						<th>Nobels</th>
+						<th>Nukes</th>
+						<th>Support</th>
+						<th>Targets</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><textarea id="nobel_coords" name="nobel_coords" rows="10"></textarea></td>
+						<td><textarea id="nuke_coords" name="nuke_coords" rows="10"></textarea></td>
+						<td><textarea id="support_coords" name="support_coords" rows="10"></textarea></td>
+						<td><textarea id="target_coords" name="target_coords" rows="10"></textarea></td>
 					</tr>
 					<tr>
-						<td><label for="nuke_unit">Slowest Nuke unit</label></td>
 						<td>
-							<select id="nuke_unit" name="nuke_unit" id="nuke_unit">
-								<option value=18 >Axe</option>
-								<option value=9 >Spy</option>
-								<option value=10 >LC/MA/Pally</option>
-								<option value=11 >HC</option>
-								<option value=30 selected="selected" >Ram/Cat</option>
-							</select>
+							<label for="nobel_count">Nobels per Target</label>
+							<input id="nobel_count" name="nobel_count" type="text" value="1" size="2">
+						</td>
+						<td>
+							<label for="nuke_count">Nukes per Target</label>
+							<input id="nuke_count" name="nuke_count" type="text" value="1" size="2">
+						</td>
+						<td>
+							<label for="support_count">Support per Target</label>
+							<input id="support_count" name="support_count" type="text" value="1" size="2">
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<input type="button" id="submit_btn" class="button" value="Get plan!">
 						</td>
 					</tr>
 					<tr>
-						<td><label for="support_unit">Slowest Support unit</label></td>
-						<td>
-							<select id="support_unit" name="support_unit" id="support_unit"> 
-								<option value=18 >Spear/Archer</option> 
-								<option value=22 selected="selected">Sword</option> 
-								<option value=9 >Spy</option> 
-								<option value=10 >LC/MA/Pally</option> 
-								<option value=11 >HC</option> 
-								<option value=30 >Cat</option> 
-							</select>
+						<td colspan="4">
+							<label for="results">Results</label>
+							<textarea id="results" name="results" rows="10" cols="90"></textarea>
 						</td>
 					</tr>
-					<tr>
-						<td><label for="world_speed">World Speed</label></td>
-						<td><input id="world_speed" name="world_speed" type="text" value="1.8" size="2"></input></td>
-					</tr>
-					<tr>
-						<td><label for="unit_speed">Unit Speed</label></td>
-						<td><input id="unit_speed" name="unit_speed" type="text" value="0.6" size="2"></input></td>
-					</tr>
-				</table>
-				<table> 
-					<thead> 
-						<th>Nobels</th> 
-						<th>Nukes</th> 
-						<th>Support</th> 
-						<th>Targets</th> 
-					</thead> 
-					<tbody> 
-						<tr>
-							<td><textArea id="nobel_coords" name="nobel_coords" rows=10></textArea></td> 
-							<td><textArea id="nuke_coords" name="nuke_coords" rows=10></textArea></td> 
-							<td><textArea id="support_coords" name="support_coords" rows=10></textArea></td>
-							<td><textArea id="target_coords" name="target_coords" rows=10></textArea></td>
-						</tr>             
-						<tr>
-							<td>
-								<label for="nobel_count">Nobels per Target</label>
-								<input id="nobel_count" name="nobel_count" type="text" value="1" size="2"></input><br/> 
-							</td>
-							<td>
-								<label for="nuke_count">Nukes per Target</label>
-								<input id="nuke_count" name="nuke_count" type="text" value="1" size="2"></input><br/> 
-							</td>
-							<td>
-								<label for="support_count">Support per Target</label>
-								<input id="support_count" name="support_count" type="text" value="1" size="2"></input><br/> 
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<input type="button" name="submit" id="submit_btn" class="button" value="Get plan!"></input>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<label for="results">Results</label>
-								<textArea id="results" name="results" rows=10 cols="90"></textArea>
-							</td> 
-						</tr>
-					</tbody> 
-				</table> 
-				
-			</form>     
-		</div>
-				<div id='bitcoin'>
-              <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
-     data-address="1JQaM6JBQRSwFyUmo4MDPuzndYzegxbuUN"
-     data-shared="false">
-    <div class="blockchain stage-begin">
-        <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
-    </div>
-    <div class="blockchain stage-loading" style="text-align:center">
-        <img src="https://blockchain.info/Resources/loading-large.gif"/>
-    </div>
-    <div class="blockchain stage-ready">
-         <p align="center">Please Donate To Bitcoin Address: <b>16TpLgRXr8bHNEqJELwAtUZFo9HZ4D7vrP</b></p>
-         <p align="center" class="qr-code"></p>
-    </div>
-    <div class="blockchain stage-paid">
-         Donation of <b>0.01 BTC</b> Received. Thank You.
-    </div>
-    <div class="blockchain stage-error">
-        <font color="red">[[error]]</font>
-    </div>
-</div></body> 
+				</tbody>
+			</table>
+		</form>
+	</div>
+
+</body>
+
 </html>
