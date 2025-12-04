@@ -21,13 +21,22 @@ function getTravelTimes(attackers, defenders, speed) {
 }
 
 /**
- * Generate a plan from travel times.
+ * Generate a plan from travel times, optimized for shortest attack period.
  */
 function getPlan(travelTimes, maxAttack, type) {
 	const plan = {};
 	const usedTargets = {};
 
-	for (const attacker in travelTimes) {
+	// Sort attackers by their minimum possible travel time (fastest option)
+	// This ensures villages with longer minimum times are assigned first
+	const attackersByMinTime = Object.keys(travelTimes)
+		.map(attacker => {
+			const minTime = Math.min(...Object.values(travelTimes[attacker]));
+			return { attacker, minTime };
+		})
+		.sort((a, b) => b.minTime - a.minTime);
+
+	for (const { attacker } of attackersByMinTime) {
 		let fastestTime = Infinity;
 		let target = '';
 		let travelTime = 0;
@@ -129,6 +138,7 @@ function clean(arr, toRemove) {
 
 /**
  * Sort plan by descending travel time.
+ * Plan is already optimized to minimize the attack period.
  */
 function sortPlan(plan) {
 	return Object.values(plan)
